@@ -1,0 +1,92 @@
+:root {
+  --dark-bg: #121212;
+  --panel-bg: #1e1e1e;
+  --card-bg: #2a2a2a;
+  --text-color: #e0e0e0;
+  --neon-cyan: #00c8ff;
+  --status-green: #00ff9a;
+  --status-red: #ff4d4d;
+}
+
+body,
+.App {
+  background: var(--dark-bg);
+  color: var(--text-color);
+  font-family: 'Consolas', 'Menlo', monospace;
+}
+
+.app-header {
+  border-bottom: 2px solid var(--neon-cyan);
+  text-align: center;
+  width: 100%;
+}
+
+.search-panel {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.main-content {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+}
+
+.results-panel,
+.details-panel {
+  background: var(--panel-bg);
+  border-radius: 8px;
+  padding: 1rem;
+  min-height: 60vh;
+}
+
+.atm-card {
+  display: flex;
+  align-items: center;
+  background: var(--card-bg);
+  border: 1px solid #444;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.atm-card:hover {
+  border-color: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
+}
+
+.card-status-dot {
+  height: 10px;
+  width: 10px;
+  border-radius: 50%;
+  margin-right: 1rem;
+}
+
+.status-green {
+  background-color: var(--status-green);
+}
+
+.status-red {
+  background-color: var(--status-red);
+}
+
+input,
+button,
+select {
+  background: var(--card-bg);
+  color: var(--text-color);
+  border: 1px solid var(--neon-cyan);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+button {
+  background: var(--neon-cyan);
+  color: var(--dark-bg);
+  cursor: pointer;
+}

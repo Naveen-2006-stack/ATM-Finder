@@ -1,0 +1,168 @@
+/* Futuristic dark neon theme for ATM Finder */
+:root{
+  --dark-bg: #121212;
+  --panel-bg: #1e1e1e;
+  --card-bg: #2a2a2a;
+  --text-color: #e0e0e0;
+  --neon-cyan: #00c8ff;
+  --status-green: #00ff9a;
+  --status-red: #ff4d4d;
+}
+
+html,body,#root,.App{
+  height:100%;
+}
+body, .App{
+  margin:0;
+  padding:0;
+  background:var(--dark-bg);
+  color:var(--text-color);
+  font-family: 'Consolas', 'Menlo', monospace;
+}
+
+.app-header{
+  padding:1rem 1rem;
+  border-bottom:2px solid var(--neon-cyan);
+  text-align:center;
+  background: linear-gradient(90deg, rgba(0,0,0,0.08), rgba(255,255,255,0.02));
+}
+.app-header h1{
+  margin:0;
+  color:var(--neon-cyan);
+  letter-spacing:1px;
+}
+
+.search-panel{
+  display:flex;
+  justify-content:center;
+  padding:1rem;
+}
+
+.pincode-input{
+  background:var(--card-bg);
+  color:var(--text-color);
+  border:1px solid rgba(0,200,255,0.15);
+  padding:0.6rem 0.8rem;
+  border-radius:6px;
+  outline:none;
+  min-width:220px;
+}
+
+.pincode-input:focus{
+  box-shadow:0 0 8px rgba(0,200,255,0.12);
+  border-color:var(--neon-cyan);
+}
+
+.search-button{
+  background:linear-gradient(180deg, rgba(0,200,255,0.12), rgba(0,200,255,0.04));
+  color:var(--text-color);
+  border:1px solid rgba(0,200,255,0.18);
+  padding:0.6rem 0.9rem;
+  margin-left:0.6rem;
+  border-radius:6px;
+  cursor:pointer;
+}
+
+.main-content{
+  display:grid;
+  grid-template-columns:1fr 1.5fr;
+  gap:1rem;
+  padding:1rem;
+}
+
+.results-panel, .details-panel{
+  background:var(--panel-bg);
+  border-radius:8px;
+  padding:1rem;
+  min-height:320px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.6);
+}
+
+.results-panel h2, .details-panel h2{
+  margin-top:0;
+  color:var(--neon-cyan);
+}
+
+.empty-state{
+  color: #9aa;
+  padding:1rem;
+  border: 1px dashed rgba(255,255,255,0.03);
+  background: linear-gradient(180deg, rgba(255,255,255,0.01), transparent);
+  border-radius:6px;
+}
+
+.atm-card{
+  display:flex;
+  align-items:center;
+  background:var(--card-bg);
+  border:1px solid #444;
+  border-radius:8px;
+  padding:1rem;
+  margin-bottom:0.5rem;
+  cursor:pointer;
+  transition: all 0.2s ease;
+}
+.atm-card:hover{
+  border-color:var(--neon-cyan);
+  box-shadow:0 0 10px var(--neon-cyan);
+}
+
+.card-status-dot{
+  height:10px;
+  width:10px;
+  border-radius:50%;
+  background-color:var(--status-green);
+  margin-right:12px;
+  flex:0 0 auto;
+}
+
+.card-info h4{
+  margin:0 0 4px 0;
+  color:var(--neon-cyan);
+}
+.card-info p{
+  margin:0;
+  font-size:13px;
+  color: #bcd;
+}
+
+.report-form label{
+  display:block;
+  margin-bottom:0.75rem;
+  color:var(--text-color);
+}
+
+.report-form select{
+  width:100%;
+  padding:0.5rem;
+  background:var(--card-bg);
+  color:var(--text-color);
+  border:1px solid rgba(255,255,255,0.04);
+  border-radius:6px;
+}
+
+.submit-button{
+  background: linear-gradient(90deg, var(--neon-cyan), rgba(0,200,255,0.6));
+  color:#022;
+  padding:0.6rem 0.9rem;
+  border-radius:6px;
+  border:none;
+  cursor:pointer;
+  font-weight:700;
+}
+
+.form-actions{
+  margin-top:1rem;
+}
+
+.global-message{
+  padding:0.6rem 1rem;
+  color:#9cf;
+  text-align:center;
+}
+
+@media (max-width:900px){
+  .main-content{
+    grid-template-columns:1fr;
+  }
+}

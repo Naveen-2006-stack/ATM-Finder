@@ -1,0 +1,40 @@
+# Compiled class files
+*.class
+
+# Log files
+*.log
+
+# Maven
+/target/
+
+# IntelliJ
+/.idea/
+*.iml
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Node
+frontend/node_modules/
+
+# Others
+*.tmp
+*.swp
+
+# Database
+*.db
+
+# JetBrains
+out/
+
+# Local env
+.env

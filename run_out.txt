@@ -1,0 +1,2 @@
+Received request for /api/test
+Received request for /api/generate
