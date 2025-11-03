@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotify - Music for Every Mood</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container text-center mt-5">
+        <h1 class="mb-4">How are you feeling today?</h1>
+        <div class="row">
+            {% for emotion, emoji in emotions.items() %}
+            <div class="col-md-3 col-6 mb-4">
+                <a href="{{ url_for('songs', emotion=emotion) }}" class="emoji-link">
+                    <div class="card emoji-card">
+                        <div class="card-body">
+                            <span class="emoji">{{ emoji }}</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

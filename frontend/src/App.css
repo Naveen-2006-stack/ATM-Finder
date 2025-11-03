@@ -90,3 +90,11 @@ button {
   color: var(--dark-bg);
   cursor: pointer;
 }
+
+.error {
+  color: var(--status-red);
+}
+
+.loading {
+  color: var(--neon-cyan);
+}

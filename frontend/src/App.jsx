@@ -1,9 +1,12 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 
 function App() {
   const [pincode, setPincode] = useState('');
+  const [searchPincode, setSearchPincode] = useState('');
   const [atms, setAtms] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [selectedAtm, setSelectedAtm] = useState(null);
   const [reportData, setReportData] = useState({
     cashStatus: 'WORKING',
@@ -11,15 +14,41 @@ function App() {
     passbookStatus: 'NOT_AVAILABLE',
   });
 
-  const handleSearch = async () => {
+
+
+  const fetchAtms = async () => {
+    setLoading(true);
+    setError(null);
     try {
-      const response = await fetch(`http://localhost:8080/api/atms?pincode=${pincode}`);
-      const data = await response.json();
-      setAtms(data);
-      setSelectedAtm(null);
+      // If you want to use mock data for development, you can keep this part.
+      if (!searchPincode) {
+        const mockAtms = [
+          { name: "Mock ATM 1", address: "123 Mock Street", latestReport: { cashStatus: "WORKING", depositStatus: "AVAILABLE", passbookStatus: "AVAILABLE" } },
+          { name: "Mock ATM 2", address: "456 Mock Avenue", latestReport: { cashStatus: "OUT_OF_CASH", depositStatus: "NOT_AVAILABLE", passbookStatus: "NOT_AVAILABLE" } },
+        ];
+        setAtms(mockAtms);
+      } else {
+        const response = await fetch(`http://localhost:8080/api/atms?pincode=${searchPincode}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await response.json();
+        setAtms(data);
+      }
     } catch (error) {
+      setError('Failed to fetch ATMs. Is the backend server running?');
       console.error('Error fetching ATMs:', error);
+    } finally {
+      setLoading(false);
     }
+  };
+
+  useEffect(() => {
+    fetchAtms();
+  }, [searchPincode]);
+
+  const handleSearch = () => {
+    setSearchPincode(pincode);
   };
 
   const handleSubmitReport = async () => {
@@ -39,8 +68,10 @@ function App() {
         body: JSON.stringify(reportPayload),
       });
       alert('Report Submitted!');
+      fetchAtms(); // Refetch ATMs to update the UI
     } catch (error) {
       console.error('Error submitting report:', error);
+      alert('Error submitting report. Please try again.');
     }
   };
 
@@ -69,6 +100,8 @@ function App() {
       <div className="main-content">
         <div className="results-panel">
           <h2>Results</h2>
+          {loading && <p className="loading">Loading...</p>}
+          {error && <p className="error">{error}</p>}
           {atms.map((atm) => (
             <div
               className="atm-card"
